@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+    <EntitySetMapping Name="AccountHolders">
+      <EntityTypeMapping TypeName="masterModel.AccountHolder">
+        <MappingFragment StoreEntitySet="AccountHolder">
+          <ScalarProperty Name="accountHolderID" ColumnName="accountHolderID" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="passwordsalt" ColumnName="passwordsalt" />
+          <ScalarProperty Name="passwordhash" ColumnName="passwordhash" />
+          <ScalarProperty Name="pinsalt" ColumnName="pinsalt" />
+          <ScalarProperty Name="pinhash" ColumnName="pinhash" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="firstLineaddr" ColumnName="firstLineaddr" />
+          <ScalarProperty Name="cityOrTown" ColumnName="cityOrTown" />
+          <ScalarProperty Name="postcode" ColumnName="postcode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cards">
+      <EntityTypeMapping TypeName="masterModel.Card">
+        <MappingFragment StoreEntitySet="Cards">
+          <ScalarProperty Name="cardID" ColumnName="cardID" />
+          <ScalarProperty Name="cardNo" ColumnName="cardNo" />
+          <ScalarProperty Name="cardPin" ColumnName="cardPin" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="accountholder" ColumnName="accountholder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeletedAHs">
+      <EntityTypeMapping TypeName="masterModel.DeletedAH">
+        <MappingFragment StoreEntitySet="DeletedAH">
+          <ScalarProperty Name="accountHolderID" ColumnName="accountHolderID" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="passwordsalt" ColumnName="passwordsalt" />
+          <ScalarProperty Name="passwordhash" ColumnName="passwordhash" />
+          <ScalarProperty Name="pinsalt" ColumnName="pinsalt" />
+          <ScalarProperty Name="pinhash" ColumnName="pinhash" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="firstLineaddr" ColumnName="firstLineaddr" />
+          <ScalarProperty Name="cityOrTown" ColumnName="cityOrTown" />
+          <ScalarProperty Name="postcode" ColumnName="postcode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="masterModel.Transaction">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="transID" ColumnName="transID" />
+          <ScalarProperty Name="transDate" ColumnName="transDate" />
+          <ScalarProperty Name="moneyIn" ColumnName="moneyIn" />
+          <ScalarProperty Name="moneyOut" ColumnName="moneyOut" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="transcard" ColumnName="transcard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
