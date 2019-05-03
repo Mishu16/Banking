@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AccountHolder">
+    <Key>
+      <PropertyRef Name="accountHolderID" />
+    </Key>
+    <Property Name="accountHolderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstname" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="lastname" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="passwordsalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="passwordhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="pinsalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="pinhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstLineaddr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cityOrTown" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cards" Relationship="Self.FK__Cards__accountho__278EDA44" FromRole="AccountHolder" ToRole="Cards" />
+  </EntityType>
+  <EntityType Name="Card">
+    <Key>
+      <PropertyRef Name="cardID" />
+    </Key>
+    <Property Name="cardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cardNo" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cardPin" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="balance" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
+    <Property Name="accountholder" Type="Int32" />
+    <NavigationProperty Name="AccountHolder1" Relationship="Self.FK__Cards__accountho__278EDA44" FromRole="Cards" ToRole="AccountHolder" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__trans__2D47B39A" FromRole="Cards" ToRole="Transactions" />
+  </EntityType>
+  <EntityType Name="DeletedAH">
+    <Key>
+      <PropertyRef Name="accountHolderID" />
+    </Key>
+    <Property Name="accountHolderID" Type="Int32" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="lastname" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="passwordsalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="passwordhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="pinsalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="pinhash" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstLineaddr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cityOrTown" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="transID" />
+    </Key>
+    <Property Name="transID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transDate" Type="DateTime" Precision="3" />
+    <Property Name="moneyIn" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="moneyOut" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="balance" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="transcard" Type="Int32" />
+    <NavigationProperty Name="Card" Relationship="Self.FK__Transacti__trans__2D47B39A" FromRole="Transactions" ToRole="Cards" />
+  </EntityType>
+  <Association Name="FK__Cards__accountho__278EDA44">
+    <End Role="AccountHolder" Type="Self.AccountHolder" Multiplicity="0..1" />
+    <End Role="Cards" Type="Self.Card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountHolder">
+        <PropertyRef Name="accountHolderID" />
+      </Principal>
+      <Dependent Role="Cards">
+        <PropertyRef Name="accountholder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__trans__2D47B39A">
+    <End Role="Cards" Type="Self.Card" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cards">
+        <PropertyRef Name="cardID" />
+      </Principal>
+      <Dependent Role="Transactions">
+        <PropertyRef Name="transcard" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AccountHolders" EntityType="Self.AccountHolder" />
+    <EntitySet Name="Cards" EntityType="Self.Card" />
+    <EntitySet Name="DeletedAHs" EntityType="Self.DeletedAH" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <AssociationSet Name="FK__Cards__accountho__278EDA44" Association="Self.FK__Cards__accountho__278EDA44">
+      <End Role="AccountHolder" EntitySet="AccountHolders" />
+      <End Role="Cards" EntitySet="Cards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__trans__2D47B39A" Association="Self.FK__Transacti__trans__2D47B39A">
+      <End Role="Cards" EntitySet="Cards" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
