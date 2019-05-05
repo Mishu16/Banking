@@ -1,114 +1,52 @@
-﻿@model BankingWebsite.Models.AccountHolder
+﻿@model IEnumerable<BankingWebsite.Models.Card>
 
 @{
     ViewBag.Title = "AccountHome";
 }
 
-<h2>AccountHome</h2>
+<h2>Index</h2>
 
-<div>
-    <h4>@DateTime.Today.TimeOfDay</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.firstname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.firstname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.lastname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.passwordsalt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.passwordsalt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.passwordhash)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.passwordhash)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pinsalt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pinsalt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.pinhash)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.pinhash)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DOB)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DOB)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.mobile)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.mobile)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.firstLineaddr)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.firstLineaddr)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.cityOrTown)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.cityOrTown)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.postcode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.postcode)
-        </dd>
-
-    </dl>
-</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.accountHolderID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Create New", "Create")
 </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cardNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cardPin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.balance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountHolder1.firstname)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.cardNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cardPin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.balance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountHolder1.firstname)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.cardID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.cardID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.cardID })
+            </td>
+        </tr>
+    }
+
+</table>

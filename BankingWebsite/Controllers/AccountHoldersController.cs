@@ -21,6 +21,21 @@ namespace BankingWebsite.Controllers
             return View(db.AccountHolders.ToList());
         }
 
+        //GET: AccountHolder/AccountHome
+
+        public ActionResult AccountHome(int? id)
+        {
+            return View(db.Cards.Where(a => a.accountholder.ToString() == id.ToString()).ToList());
+        }
+
+        ////POST: AccountHolder/AccountHome
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult AccountHome(Session[)
+        //{
+        //    return View();
+        //}
+
         // GET: AccountHolders/Login
         public ActionResult Login()
         {
