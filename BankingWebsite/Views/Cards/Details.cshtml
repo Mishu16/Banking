@@ -1,0 +1,50 @@
+﻿@model BankingWebsite.Models.Card
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Card</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cardNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cardNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cardPin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cardPin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.balance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.balance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountHolder1.firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountHolder1.firstname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.cardID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

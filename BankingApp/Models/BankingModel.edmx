@@ -190,7 +190,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="masterEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AccountHolders" EntityType="Self.AccountHolder" />
           <EntitySet Name="Cards" EntityType="Self.Card" />
           <EntitySet Name="DeletedAHs" EntityType="Self.DeletedAH" />
@@ -209,7 +209,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities2">
           <EntitySetMapping Name="AccountHolders">
             <EntityTypeMapping TypeName="masterModel.AccountHolder">
               <MappingFragment StoreEntitySet="AccountHolder">

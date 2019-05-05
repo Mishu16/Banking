@@ -13,10 +13,10 @@ namespace BankingApp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class masterEntities : DbContext
+    public partial class masterEntities2 : DbContext
     {
-        public masterEntities()
-            : base("name=masterEntities")
+        public masterEntities2()
+            : base("name=masterEntities2")
         {
         }
     
@@ -31,3 +31,4 @@ namespace BankingApp.Models
         public virtual DbSet<Transaction> Transactions { get; set; }
     }
 }
+

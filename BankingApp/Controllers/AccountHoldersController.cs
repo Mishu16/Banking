@@ -22,6 +22,54 @@ namespace BankingApp.Controllers
             return View(db.AccountHolders.ToList());
         }
 
+        // GET: AccountHolders/Login
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        // POST: AccountHolders/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login([Bind(Include = "accountHolderID, firstname, lastname, password, passwordsalt, passwordhash, pin, pinsalt, pinhash, DOB, customerRef, email, mobile, firstLineaddr, cityOrTown, postcode")] AccountHolder accountHolder)
+        {
+            accountHolder.firstname = "Empty";
+            accountHolder.lastname = "Empty";
+            accountHolder.DOB = new DateTime().Date;
+            accountHolder.email = "empty@empty.com";
+            accountHolder.confirmPassword = accountHolder.password;
+            accountHolder.mobile = "07000000000";
+            accountHolder.firstLineaddr = "empty";
+            accountHolder.cityOrTown = "city";
+            accountHolder.postcode = "n22 3qn";
+
+
+            AccountHolder ah = db.AccountHolders.SingleOrDefault(a => (a.DOB.ToString().Replace("-", "") + a.accountHolderID.ToString())== accountHolder.customerRef.ToString());
+            if(ah == null)
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+                string attemptedpasswordHash = HashSalt.GenerateHash(accountHolder.password, ah.passwordsalt);
+                string attemptedpinHash = HashSalt.GenerateHash(accountHolder.pin, ah.pinsalt);
+
+                if (attemptedpasswordHash == ah.passwordhash && attemptedpinHash == ah.pinhash)
+                {
+                    Session["ahID"] = ah.accountHolderID;
+                    Session["DOB"] = ah.DOB;
+                    Session["fname"] = ah.firstname;
+                    Session["lname"] = ah.lastname;
+
+                    return RedirectToAction("Details/" + ah.accountHolderID);
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+                }
+            }
+        }
+
         // GET: AccountHolders/Details/5
         public ActionResult Details(int? id)
         {
@@ -40,7 +88,9 @@ namespace BankingApp.Controllers
         // GET: AccountHolders/Create
         public ActionResult Create()
         {
-            TempData["Pin"] = PinGen.RandomPinGen().ToString();
+            //Generate random pin and show pin so they can send pin to user
+            ViewData["Pin"] = PinGen.RandomPinGen().ToString();
+            TempData["Pin"] = ViewData["pin"];
             return View();
         }
 
@@ -49,22 +99,25 @@ namespace BankingApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "accountHolderID,firstname,lastname,password,passwordsalt,passwordhash,pinsalt,pinhash,DOB,email,mobile,firstLineaddr,cityOrTown,postcode")] AccountHolder accountHolder)
+        public ActionResult Create([Bind(Include = "accountHolderID,firstname,lastname,password,confirmPassword,passwordsalt,passwordhash,pin,pinsalt,pinhash,DOB,customerRef,email,mobile,firstLineaddr,cityOrTown,postcode")] AccountHolder accountHolder)
         {
             if (ModelState.IsValid)
             {
-                //Save hashed password to db
-                accountHolder.passwordsalt = HashSalt.GenerateSalt(4);
-                accountHolder.passwordhash = HashSalt.GenerateHash(accountHolder.password, accountHolder.passwordsalt);
+                    accountHolder.customerRef = "Empty123";
 
-                //Saves hashed pin to db plus need to show to admin so they can send pin to user
-                accountHolder.pin = TempData["Pin"].ToString();
-                accountHolder.pinsalt = HashSalt.GenerateSalt(4);
-                accountHolder.pinhash = HashSalt.GenerateHash(accountHolder.pin, accountHolder.pinsalt);
+                    //Save hashed password to db
+                    accountHolder.passwordsalt = HashSalt.GenerateSalt(4);
+                    accountHolder.passwordhash = HashSalt.GenerateHash(accountHolder.password, accountHolder.passwordsalt);
 
-                db.AccountHolders.Add(accountHolder);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    //Save pin displayed on form to DB
+                    accountHolder.pin = TempData["Pin"].ToString();
+                    accountHolder.pinsalt = HashSalt.GenerateSalt(4);
+                    accountHolder.pinhash = HashSalt.GenerateHash(accountHolder.pin, accountHolder.pinsalt);
+
+                    db.AccountHolders.Add(accountHolder);
+                    db.SaveChanges();
+                    return RedirectToAction("Login");
+               
             }
 
             return View(accountHolder);
@@ -82,6 +135,8 @@ namespace BankingApp.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["EditPin"] = PinGen.RandomPinGen().ToString();
+            TempData["EditPin"] = ViewData["EditPin"];
             return View(accountHolder);
         }
 
@@ -90,10 +145,21 @@ namespace BankingApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "accountHolderID,firstname,lastname,passwordsalt,passwordhash,pinsalt,pinhash,DOB,email,mobile,firstLineaddr,cityOrTown,postcode")] AccountHolder accountHolder)
+        public ActionResult Edit([Bind(Include = "accountHolderID,firstname,lastname,password,confirmPassword,passwordsalt,passwordhash,pin,pinsalt,pinhash,DOB,customerRef,email,mobile,firstLineaddr,cityOrTown,postcode")] AccountHolder accountHolder)
         {
             if (ModelState.IsValid)
             {
+                accountHolder.customerRef = accountHolder.DOB.ToString() + accountHolder.accountHolderID.ToString();
+
+                //Save hashed password to db
+                accountHolder.passwordsalt = HashSalt.GenerateSalt(4);
+                accountHolder.passwordhash = HashSalt.GenerateHash(accountHolder.password, accountHolder.passwordsalt);
+
+                //Saves hashed pin to db plus need to show to admin so they can send pin to user
+                accountHolder.pin = TempData["EditPin"].ToString();
+                accountHolder.pinsalt = HashSalt.GenerateSalt(4);
+                accountHolder.pinhash = HashSalt.GenerateHash(accountHolder.pin, accountHolder.pinsalt);
+
                 db.Entry(accountHolder).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
