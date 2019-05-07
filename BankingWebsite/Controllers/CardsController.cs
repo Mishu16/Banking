@@ -48,7 +48,7 @@ namespace BankingWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "cardID,cardNo,cardPin,balance,accountholder")] Card card)
+        public ActionResult Create([Bind(Include = "cardID,cardNo,cardPin,balance,accountholder,accountName,accountNumber,sortcode")] Card card)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace BankingWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "cardID,cardNo,cardPin,balance,accountholder")] Card card)
+        public ActionResult Edit([Bind(Include = "cardID,cardNo,cardPin,balance,accountholder,accountName, accountNumber, sortcode")] Card card)
         {
             if (ModelState.IsValid)
             {

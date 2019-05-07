@@ -30,6 +30,9 @@
     <Property Name="accountholder" Type="Int32" />
     <NavigationProperty Name="AccountHolder1" Relationship="Self.FK__Cards__accountho__278EDA44" FromRole="Cards" ToRole="AccountHolder" />
     <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__trans__2D47B39A" FromRole="Cards" ToRole="Transactions" />
+    <Property Name="accountName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="accountNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="sortcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="DeletedAH">
     <Key>

@@ -24,6 +24,9 @@ namespace BankingWebsite.Models
         public string cardNo { get; set; }
         public string cardPin { get; set; }
         public decimal balance { get; set; }
+        public string accountName { get; set; }
+        public string accountNumber { get; set; }
+        public string sortcode { get; set; }
         public Nullable<int> accountholder { get; set; }
     
         public virtual AccountHolder AccountHolder1 { get; set; }

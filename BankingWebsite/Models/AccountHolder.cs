@@ -77,8 +77,17 @@ namespace BankingWebsite.Models
         [RegularExpression(@"^07[0-9]{8,10}$", ErrorMessage = "Invalid mobile number")]
         [DisplayName("Mobile")]
         public string mobile { get; set; }
+
+        [DisplayName("First line of address")]
+        [Required]
         public string firstLineaddr { get; set; }
+
+        [DisplayName("City or Town")]
+        [Required]
         public string cityOrTown { get; set; }
+
+        [DisplayName("Postcode")]
+        [Required]
         public string postcode { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

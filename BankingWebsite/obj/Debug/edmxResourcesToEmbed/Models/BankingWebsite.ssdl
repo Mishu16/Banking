@@ -27,6 +27,9 @@
     <Property Name="cardPin" Type="varchar" MaxLength="4" Nullable="false" />
     <Property Name="balance" Type="decimal" Precision="12" Scale="2" Nullable="false" />
     <Property Name="accountholder" Type="int" />
+    <Property Name="accountName" Type="nchar" MaxLength="10" />
+    <Property Name="accountNumber" Type="nvarchar(max)" />
+    <Property Name="sortcode" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="DeletedAH">
     <Key>

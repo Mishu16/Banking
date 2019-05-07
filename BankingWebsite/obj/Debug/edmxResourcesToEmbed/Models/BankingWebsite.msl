@@ -23,6 +23,9 @@
     <EntitySetMapping Name="Cards">
       <EntityTypeMapping TypeName="masterModel.Card">
         <MappingFragment StoreEntitySet="Cards">
+          <ScalarProperty Name="sortcode" ColumnName="sortcode" />
+          <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+          <ScalarProperty Name="accountName" ColumnName="accountName" />
           <ScalarProperty Name="cardID" ColumnName="cardID" />
           <ScalarProperty Name="cardNo" ColumnName="cardNo" />
           <ScalarProperty Name="cardPin" ColumnName="cardPin" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountHolder">
           <Key>
             <PropertyRef Name="accountHolderID" />
@@ -32,6 +32,9 @@
           <Property Name="cardPin" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="balance" Type="decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="accountholder" Type="int" />
+          <Property Name="accountName" Type="nchar" MaxLength="10" />
+          <Property Name="accountNumber" Type="nvarchar(max)" />
+          <Property Name="sortcode" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="DeletedAH">
           <Key>
@@ -100,8 +103,7 @@
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -135,6 +137,9 @@
           <Property Name="accountholder" Type="Int32" />
           <NavigationProperty Name="AccountHolder1" Relationship="Self.FK__Cards__accountho__278EDA44" FromRole="Cards" ToRole="AccountHolder" />
           <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__trans__2D47B39A" FromRole="Cards" ToRole="Transactions" />
+          <Property Name="accountName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="accountNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="sortcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DeletedAH">
           <Key>
@@ -232,6 +237,9 @@
           <EntitySetMapping Name="Cards">
             <EntityTypeMapping TypeName="masterModel.Card">
               <MappingFragment StoreEntitySet="Cards">
+                <ScalarProperty Name="sortcode" ColumnName="sortcode" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="accountName" ColumnName="accountName" />
                 <ScalarProperty Name="cardID" ColumnName="cardID" />
                 <ScalarProperty Name="cardNo" ColumnName="cardNo" />
                 <ScalarProperty Name="cardPin" ColumnName="cardPin" />
