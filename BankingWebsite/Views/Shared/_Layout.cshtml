@@ -6,9 +6,41 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script>
+
+        $(document).ready(function () {
+            $('#nav .navbar-nav li>a').on('click', function (event) {
+                event.preventDefault();
+                var sectionID = $(this).attr("href");
+                scrollToID(sectionID, 750);
+            });
+
+            function scrollToID(id, speed) {
+                var offSet = 70;
+                var targetOffset = $(id).offset().top - offSet;
+                $('html,body').animate({ scrollTop: targetOffset }, speed);
+            }
+        });
+    </script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script>
+        jQuery(function ($) {
+
+            // The speed of the scroll in milliseconds
+            var speed = 1000;
+
+            // Find links that are #anchors and scroll to them
+            $('a[href^=#]')
+                .not('.lp-pom-form .lp-pom-button')
+                .unbind('click.smoothScroll')
+                .bind('click.smoothScroll', function (event) {
+                    event.preventDefault();
+                    $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top }, speed);
+                });
+        });
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-static-top">
@@ -42,7 +74,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - TPB</p>
         </footer>
     </div>
 
