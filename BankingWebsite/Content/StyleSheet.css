@@ -13,8 +13,8 @@ hr {
     border-top: #333;
 }
 .row {
-    color:white;
-    background-color: transparent;
+    color: white;
+    background-color: #222222;
 }
 
 .info {
@@ -105,4 +105,20 @@ a.infoblock {
 &:focus {
     .tab-focus();
 }
+}
+
+.loginbox {
+    color: white;
+    background: #222222;
+    margin: 20px 20px;
+    text-align:center;
+}
+
+.LBrow {
+    background-color: white;
+}
+
+.generalblock {
+    background-color: white;
+    color: #222222;
 }
