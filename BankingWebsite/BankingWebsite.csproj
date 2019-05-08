@@ -172,11 +172,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\navbar.css" />
     <Content Include="Content\StyleSheet.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\6d7481ba-53bc-410c-9727-dd648f3e96a3.png" />
     <Content Include="Models\BankingWebsite.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BankingWebsite.edmx</DependentUpon>
@@ -189,6 +191,7 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Images\592751b8-bafa-4516-b124-d3ca2d6080ba.png" />
     <EntityDeploy Include="Models\BankingWebsite.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>BankingWebsite.Designer.cs</LastGenOutput>
