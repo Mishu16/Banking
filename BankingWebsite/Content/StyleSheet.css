@@ -1,0 +1,16 @@
+﻿body {
+    background: url('https://images.unsplash.com/photo-1509470475192-4516c145f8a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80');
+    padding: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.jumbotron {
+    color:antiquewhite;
+    text-align:center;
+}
+
+.info {
+    color: antiquewhite;
+    text-align: center;
+}

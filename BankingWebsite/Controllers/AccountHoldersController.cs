@@ -75,7 +75,7 @@ namespace BankingWebsite.Controllers
                     Session["fname"] = ah.firstname;
                     Session["lname"] = ah.lastname;
 
-                    return RedirectToAction("Details/" + ah.accountHolderID);
+                    return RedirectToAction("AccountHome/" + Session["ahID"]);
                 }
                 else
                 {
