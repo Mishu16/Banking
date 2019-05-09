@@ -5,65 +5,102 @@
 }
 
     <div class="row">
-        <div class="col-lg-2">   </div>
-        <div class="generalblock col-lg-8">
-            <h2>Welcome @Session["fname"]</h2>
-            <p>
-                Below is your account summary.
-            </p>
-        </div>
-        <div class="col-lg-2">   </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-2">   </div>
-        <div class="generalblock col-lg-8">
-            <h3>Personal accounts</h3>
-            <table class="table">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.accountName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.accountNumber)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.sortcode)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.cardNo)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.balance)
-                    </th>
-                    <th></th>
-                </tr>
+        <div class="col-lg-2">
+            <div id="wrapper">
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.accountName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.accountNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.sortcode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.cardNo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.balance)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Details", "Details", new { id = item.cardID })
-                        </td>
-                    </tr>
-                }
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-brand">
+                            <a href="#">
+                                Overview
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Statements</a>
+                        </li>
+                        <li>
+                            <a href="#">Transfer money</a>
+                        </li>
+                        <li>
+                            <a href="#">Make payment</a>
+                        </li>
 
-            </table>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- /#wrapper -->
+            <!-- Menu Toggle Script -->
+    <script>$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });</script>
         </div>
-        <div class="col-lg-2">   </div>
+        <div class="col-lg-8">
+            <div class="generalblock row">
+                    <h2>Welcome @Session["fname"]</h2>
+                    <p>
+                        Below is your account summary.
+                    </p>
+            </div>
+            
+            <div class="generalblock row">
+                    <h3>Personal accounts</h3>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.accountName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.accountNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.sortcode)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.cardNo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.balance)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.accountName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.accountNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.sortcode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.cardNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.balance)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Details", "Details", new { id = item.cardID })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+            </div>
+
+        </div>
+        <div class="adbanner col-lg-2">
+            <div class="adbanner">
+                <p> Insert ad </p>
+            </div>
+        </div>
+
     </div>
+   
 

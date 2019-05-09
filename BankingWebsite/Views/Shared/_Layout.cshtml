@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/Sidebar.css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <script>
@@ -58,10 +59,19 @@
             </div>
             <div id="navbar3" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li class="#"><a href="#">Home</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li><a id="login" href="~/AccountHolders/Login"><b>Login</b></a>
+                    @if (Session["ahID"] == null)
+                    {
+                        <li><a id="login" href="~/AccountHolders/Login"><b>Login</b></a></li>
+
+                    }
+                    else
+                    {
+                        <li><a id="logout" href="~/AccountHolders/Logout"><b>Logout</b></a></li>
+
+                    }
                 </ul>
                 </li>
                 </ul>

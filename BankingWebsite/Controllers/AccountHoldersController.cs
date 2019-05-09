@@ -36,6 +36,13 @@ namespace BankingWebsite.Controllers
         //    return View();
         //}
 
+        public ActionResult Logout()
+        {
+            @Session.Clear();
+            @Session.Abandon();
+            return RedirectToAction("Index", "Home");
+        }
+
         // GET: AccountHolders/Login
         public ActionResult Login()
         {

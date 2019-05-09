@@ -29,7 +29,8 @@ namespace BankingWebsite
                       "~/Content/StyleSheet.css"));
             bundles.Add(new StyleBundle("~/Content/navbar.css").Include(
                       "~/Content/navbar.css"));
-
+            bundles.Add(new StyleBundle("~/Content/Sidebar.css").Include(
+                      "~/Content/Sidebar.css"));
         }
     }
 }

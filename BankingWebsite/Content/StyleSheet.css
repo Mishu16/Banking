@@ -19,7 +19,7 @@ hr {
 
 .info {
     color: white;
-    border-right: 6px solid white;
+    border-right: 1px solid white;
     margin:15px 0px;
     height: 150px;
     text-align:center;
@@ -41,7 +41,7 @@ hr {
 }
 
 .TBH {
-    border-right: 6px solid white;
+    border-right: 1px solid white;
     height: auto;
 }
 
@@ -119,6 +119,17 @@ a.infoblock {
 }
 
 .generalblock {
+    margin-top:10px;
+    padding:20px;
     background-color: white;
     color: #222222;
+}
+
+#sidebar-wrapper {
+    width: 220px;
+}
+
+.adbanner {
+    background:white;
+    width:220px;
 }
