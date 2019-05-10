@@ -15,13 +15,13 @@
             @Html.DisplayNameFor(model => model.transDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.moneyIn)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.moneyOut)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.balance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.toBalance)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Card.cardNo)
@@ -33,31 +33,31 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.transDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.moneyIn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.moneyOut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.balance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Card.cardNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Card1.cardNo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.transID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.transID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.transID })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.transDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.moneyOut)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.balance)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.toBalance)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Card.cardNo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Card1.cardNo)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.transID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.transID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.transID })
+    </td>
+</tr>
 }
 
 </table>

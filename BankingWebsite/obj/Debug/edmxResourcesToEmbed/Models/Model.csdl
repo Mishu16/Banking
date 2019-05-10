@@ -66,6 +66,7 @@
     <Property Name="toAccount" Type="Int32" />
     <NavigationProperty Name="Card" Relationship="Self.FK__Transacti__fromA__3AA1AEB8" FromRole="Transactions" ToRole="Cards" />
     <NavigationProperty Name="Card1" Relationship="Self.FK__Transacti__toAcc__39AD8A7F" FromRole="Transactions" ToRole="Cards" />
+    <Property Name="toBalance" Type="Decimal" Precision="12" Scale="2" />
   </EntityType>
   <Association Name="FK__Cards__accountho__278EDA44">
     <End Role="AccountHolder" Type="Self.AccountHolder" Multiplicity="0..1" />

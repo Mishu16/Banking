@@ -60,6 +60,7 @@
     <Property Name="balance" Type="decimal" Precision="12" Scale="2" />
     <Property Name="fromAccount" Type="int" />
     <Property Name="toAccount" Type="int" />
+    <Property Name="toBalance" Type="decimal" Precision="12" Scale="2" />
   </EntityType>
   <Association Name="FK__Cards__accountho__278EDA44">
     <End Role="AccountHolder" Type="Self.AccountHolder" Multiplicity="0..1" />

@@ -166,6 +166,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\HashSalt.cs" />
     <Compile Include="Utilities\PinGen.cs" />
+    <Compile Include="Utilities\TransactionsFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountHolder">
           <Key>
             <PropertyRef Name="accountHolderID" />
@@ -65,6 +65,7 @@
           <Property Name="balance" Type="decimal" Precision="12" Scale="2" />
           <Property Name="fromAccount" Type="int" />
           <Property Name="toAccount" Type="int" />
+          <Property Name="toBalance" Type="decimal" Precision="12" Scale="2" />
         </EntityType>
         <Association Name="FK__Cards__accountho__278EDA44">
           <End Role="AccountHolder" Type="Self.AccountHolder" Multiplicity="0..1" />
@@ -120,8 +121,7 @@
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -191,6 +191,7 @@
           <Property Name="toAccount" Type="Int32" />
           <NavigationProperty Name="Card" Relationship="Self.FK__Transacti__fromA__3AA1AEB8" FromRole="Transactions" ToRole="Cards" />
           <NavigationProperty Name="Card1" Relationship="Self.FK__Transacti__toAcc__39AD8A7F" FromRole="Transactions" ToRole="Cards" />
+          <Property Name="toBalance" Type="Decimal" Precision="12" Scale="2" />
         </EntityType>
         <Association Name="FK__Cards__accountho__278EDA44">
           <End Role="AccountHolder" Type="Self.AccountHolder" Multiplicity="0..1" />
@@ -307,6 +308,7 @@
           <EntitySetMapping Name="Transactions">
             <EntityTypeMapping TypeName="masterModel.Transaction">
               <MappingFragment StoreEntitySet="Transactions">
+                <ScalarProperty Name="toBalance" ColumnName="toBalance" />
                 <ScalarProperty Name="transID" ColumnName="transID" />
                 <ScalarProperty Name="transDate" ColumnName="transDate" />
                 <ScalarProperty Name="moneyIn" ColumnName="moneyIn" />

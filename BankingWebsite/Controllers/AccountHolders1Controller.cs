@@ -26,6 +26,7 @@ namespace BankingWebsite.Controllers
         public ActionResult AccountHome(int? id)
         {
             return View(db.Cards.Where(a => a.accountholder.ToString() == id.ToString()).ToList());
+
         }
 
         public ActionResult Logout()

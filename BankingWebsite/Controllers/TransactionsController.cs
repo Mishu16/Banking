@@ -39,8 +39,10 @@ namespace BankingWebsite.Controllers
         // GET: Transactions/Create
         public ActionResult Create()
         {
-            ViewBag.fromAccount = new SelectList(db.Cards, "cardID", "cardNo");
-            ViewBag.toAccount = new SelectList(db.Cards, "cardID", "cardNo");
+            string ahID = Session["ahID"].ToString();
+
+            ViewBag.fromAccount = new SelectList(db.Cards.Where(c => c.accountholder.ToString() == ahID), "cardID", "cardNo");
+            ViewBag.toAccount = new SelectList(db.Cards.Where(c => c.accountholder.ToString() == ahID ), "cardID", "cardNo");
             return View();
         }
 
@@ -53,6 +55,15 @@ namespace BankingWebsite.Controllers
         {
             if (ModelState.IsValid)
             {
+                transaction.moneyIn = 0;
+
+                transaction.balance = db.Cards.Single(c => c.cardID == transaction.fromAccount).balance - transaction.moneyOut;
+                db.Cards.Single(c => c.cardID == transaction.fromAccount).balance = (decimal) transaction.balance;
+
+                transaction.toBalance = db.Cards.Single(c => c.cardID == transaction.toAccount).balance + transaction.moneyOut;
+                db.Cards.Single(c => c.cardID == transaction.toAccount).balance = (decimal)transaction.toBalance;
+
+                transaction.transDate = DateTime.Now.Date;
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
                 return RedirectToAction("Index");
