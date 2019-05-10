@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="masterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AccountHolder">
           <Key>
             <PropertyRef Name="accountHolderID" />
@@ -63,7 +63,8 @@
           <Property Name="moneyIn" Type="decimal" Precision="12" Scale="2" />
           <Property Name="moneyOut" Type="decimal" Precision="12" Scale="2" />
           <Property Name="balance" Type="decimal" Precision="12" Scale="2" />
-          <Property Name="transcard" Type="int" />
+          <Property Name="fromAccount" Type="int" />
+          <Property Name="toAccount" Type="int" />
         </EntityType>
         <Association Name="FK__Cards__accountho__278EDA44">
           <End Role="AccountHolder" Type="Self.AccountHolder" Multiplicity="0..1" />
@@ -77,7 +78,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__trans__2D47B39A">
+        <Association Name="FK__Transacti__fromA__3AA1AEB8">
           <End Role="Cards" Type="Self.Cards" Multiplicity="0..1" />
           <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
           <ReferentialConstraint>
@@ -85,7 +86,19 @@
               <PropertyRef Name="cardID" />
             </Principal>
             <Dependent Role="Transactions">
-              <PropertyRef Name="transcard" />
+              <PropertyRef Name="fromAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__toAcc__39AD8A7F">
+          <End Role="Cards" Type="Self.Cards" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transactions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cards">
+              <PropertyRef Name="cardID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="toAccount" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -98,12 +111,17 @@
             <End Role="AccountHolder" EntitySet="AccountHolder" />
             <End Role="Cards" EntitySet="Cards" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__trans__2D47B39A" Association="Self.FK__Transacti__trans__2D47B39A">
+          <AssociationSet Name="FK__Transacti__fromA__3AA1AEB8" Association="Self.FK__Transacti__fromA__3AA1AEB8">
+            <End Role="Cards" EntitySet="Cards" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__toAcc__39AD8A7F" Association="Self.FK__Transacti__toAcc__39AD8A7F">
             <End Role="Cards" EntitySet="Cards" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="masterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -135,11 +153,12 @@
           <Property Name="cardPin" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="balance" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
           <Property Name="accountholder" Type="Int32" />
-          <NavigationProperty Name="AccountHolder1" Relationship="Self.FK__Cards__accountho__278EDA44" FromRole="Cards" ToRole="AccountHolder" />
-          <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__trans__2D47B39A" FromRole="Cards" ToRole="Transactions" />
           <Property Name="accountName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="accountNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="sortcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountHolder1" Relationship="Self.FK__Cards__accountho__278EDA44" FromRole="Cards" ToRole="AccountHolder" />
+          <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__fromA__3AA1AEB8" FromRole="Cards" ToRole="Transactions" />
+          <NavigationProperty Name="Transactions1" Relationship="Self.FK__Transacti__toAcc__39AD8A7F" FromRole="Cards" ToRole="Transactions" />
         </EntityType>
         <EntityType Name="DeletedAH">
           <Key>
@@ -168,8 +187,10 @@
           <Property Name="moneyIn" Type="Decimal" Precision="12" Scale="2" />
           <Property Name="moneyOut" Type="Decimal" Precision="12" Scale="2" />
           <Property Name="balance" Type="Decimal" Precision="12" Scale="2" />
-          <Property Name="transcard" Type="Int32" />
-          <NavigationProperty Name="Card" Relationship="Self.FK__Transacti__trans__2D47B39A" FromRole="Transactions" ToRole="Cards" />
+          <Property Name="fromAccount" Type="Int32" />
+          <Property Name="toAccount" Type="Int32" />
+          <NavigationProperty Name="Card" Relationship="Self.FK__Transacti__fromA__3AA1AEB8" FromRole="Transactions" ToRole="Cards" />
+          <NavigationProperty Name="Card1" Relationship="Self.FK__Transacti__toAcc__39AD8A7F" FromRole="Transactions" ToRole="Cards" />
         </EntityType>
         <Association Name="FK__Cards__accountho__278EDA44">
           <End Role="AccountHolder" Type="Self.AccountHolder" Multiplicity="0..1" />
@@ -183,7 +204,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__trans__2D47B39A">
+        <Association Name="FK__Transacti__fromA__3AA1AEB8">
           <End Role="Cards" Type="Self.Card" Multiplicity="0..1" />
           <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
           <ReferentialConstraint>
@@ -191,11 +212,23 @@
               <PropertyRef Name="cardID" />
             </Principal>
             <Dependent Role="Transactions">
-              <PropertyRef Name="transcard" />
+              <PropertyRef Name="fromAccount" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK__Transacti__toAcc__39AD8A7F">
+          <End Role="Cards" Type="Self.Card" Multiplicity="0..1" />
+          <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cards">
+              <PropertyRef Name="cardID" />
+            </Principal>
+            <Dependent Role="Transactions">
+              <PropertyRef Name="toAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="masterEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AccountHolders" EntityType="Self.AccountHolder" />
           <EntitySet Name="Cards" EntityType="Self.Card" />
           <EntitySet Name="DeletedAHs" EntityType="Self.DeletedAH" />
@@ -204,7 +237,11 @@
             <End Role="AccountHolder" EntitySet="AccountHolders" />
             <End Role="Cards" EntitySet="Cards" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__trans__2D47B39A" Association="Self.FK__Transacti__trans__2D47B39A">
+          <AssociationSet Name="FK__Transacti__fromA__3AA1AEB8" Association="Self.FK__Transacti__fromA__3AA1AEB8">
+            <End Role="Cards" EntitySet="Cards" />
+            <End Role="Transactions" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__toAcc__39AD8A7F" Association="Self.FK__Transacti__toAcc__39AD8A7F">
             <End Role="Cards" EntitySet="Cards" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
@@ -214,7 +251,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+        <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities1">
           <EntitySetMapping Name="AccountHolders">
             <EntityTypeMapping TypeName="masterModel.AccountHolder">
               <MappingFragment StoreEntitySet="AccountHolder">
@@ -237,14 +274,14 @@
           <EntitySetMapping Name="Cards">
             <EntityTypeMapping TypeName="masterModel.Card">
               <MappingFragment StoreEntitySet="Cards">
-                <ScalarProperty Name="sortcode" ColumnName="sortcode" />
-                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
-                <ScalarProperty Name="accountName" ColumnName="accountName" />
                 <ScalarProperty Name="cardID" ColumnName="cardID" />
                 <ScalarProperty Name="cardNo" ColumnName="cardNo" />
                 <ScalarProperty Name="cardPin" ColumnName="cardPin" />
                 <ScalarProperty Name="balance" ColumnName="balance" />
                 <ScalarProperty Name="accountholder" ColumnName="accountholder" />
+                <ScalarProperty Name="accountName" ColumnName="accountName" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="sortcode" ColumnName="sortcode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -275,7 +312,8 @@
                 <ScalarProperty Name="moneyIn" ColumnName="moneyIn" />
                 <ScalarProperty Name="moneyOut" ColumnName="moneyOut" />
                 <ScalarProperty Name="balance" ColumnName="balance" />
-                <ScalarProperty Name="transcard" ColumnName="transcard" />
+                <ScalarProperty Name="fromAccount" ColumnName="fromAccount" />
+                <ScalarProperty Name="toAccount" ColumnName="toAccount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

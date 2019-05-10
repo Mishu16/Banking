@@ -18,19 +18,22 @@ namespace BankingWebsite.Models
         public Card()
         {
             this.Transactions = new HashSet<Transaction>();
+            this.Transactions1 = new HashSet<Transaction>();
         }
     
         public int cardID { get; set; }
         public string cardNo { get; set; }
         public string cardPin { get; set; }
         public decimal balance { get; set; }
+        public Nullable<int> accountholder { get; set; }
         public string accountName { get; set; }
         public string accountNumber { get; set; }
         public string sortcode { get; set; }
-        public Nullable<int> accountholder { get; set; }
     
         public virtual AccountHolder AccountHolder1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transaction> Transactions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Transaction> Transactions1 { get; set; }
     }
 }

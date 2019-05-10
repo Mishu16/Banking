@@ -4,13 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="63719b4901ae458a8908f0cda27eb290" Name="Diagram1">
+      <Diagram DiagramId="c0b24fb5423c430d8bdd8b12a50168df" Name="Diagram1">
         <EntityTypeShape EntityType="masterModel.AccountHolder" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="masterModel.Card" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Card" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="masterModel.DeletedAH" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="masterModel.Transaction" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="masterModel.Transaction" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="masterModel.FK__Cards__accountho__278EDA44" ManuallyRouted="false" />
-        <AssociationConnector Association="masterModel.FK__Transacti__trans__2D47B39A" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__Transacti__fromA__3AA1AEB8" ManuallyRouted="false" />
+        <AssociationConnector Association="masterModel.FK__Transacti__toAcc__39AD8A7F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

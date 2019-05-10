@@ -13,10 +13,10 @@ namespace BankingWebsite.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class masterEntities : DbContext
+    public partial class masterEntities1 : DbContext
     {
-        public masterEntities()
-            : base("name=masterEntities")
+        public masterEntities1()
+            : base("name=masterEntities1")
         {
         }
     

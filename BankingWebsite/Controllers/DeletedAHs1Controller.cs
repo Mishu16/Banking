@@ -10,17 +10,17 @@ using BankingWebsite.Models;
 
 namespace BankingWebsite.Controllers
 {
-    public class DeletedAHsController : Controller
+    public class DeletedAHs1Controller : Controller
     {
-        private masterEntities db = new masterEntities();
+        private masterEntities1 db = new masterEntities1();
 
-        // GET: DeletedAHs
+        // GET: DeletedAHs1
         public ActionResult Index()
         {
             return View(db.DeletedAHs.ToList());
         }
 
-        // GET: DeletedAHs/Details/5
+        // GET: DeletedAHs1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,13 +35,13 @@ namespace BankingWebsite.Controllers
             return View(deletedAH);
         }
 
-        // GET: DeletedAHs/Create
+        // GET: DeletedAHs1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: DeletedAHs/Create
+        // POST: DeletedAHs1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,7 +58,7 @@ namespace BankingWebsite.Controllers
             return View(deletedAH);
         }
 
-        // GET: DeletedAHs/Edit/5
+        // GET: DeletedAHs1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,7 +73,7 @@ namespace BankingWebsite.Controllers
             return View(deletedAH);
         }
 
-        // POST: DeletedAHs/Edit/5
+        // POST: DeletedAHs1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -89,7 +89,7 @@ namespace BankingWebsite.Controllers
             return View(deletedAH);
         }
 
-        // GET: DeletedAHs/Delete/5
+        // GET: DeletedAHs1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +104,7 @@ namespace BankingWebsite.Controllers
             return View(deletedAH);
         }
 
-        // POST: DeletedAHs/Delete/5
+        // POST: DeletedAHs1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

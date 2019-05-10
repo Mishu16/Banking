@@ -12,15 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.accountName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.accountNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.sortcode)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.cardNo)
         </th>
         <th>
@@ -30,40 +21,49 @@
             @Html.DisplayNameFor(model => model.balance)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.accountName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.accountNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sortcode)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.AccountHolder1.firstname)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.accountName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.accountNumber)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.sortcode)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.cardNo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.cardPin)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.balance)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.AccountHolder1.firstname)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.cardID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.cardID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.cardID })
-    </td>
-</tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cardNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cardPin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.balance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.accountNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sortcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountHolder1.firstname)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.cardID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.cardID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.cardID })
+        </td>
+    </tr>
 }
 
 </table>

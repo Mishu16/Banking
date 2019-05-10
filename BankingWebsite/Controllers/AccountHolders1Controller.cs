@@ -11,9 +11,9 @@ using BankingWebsite.Utilities;
 
 namespace BankingWebsite.Controllers
 {
-    public class AccountHoldersController : Controller
+    public class AccountHolders1Controller : Controller
     {
-        private masterEntities db = new masterEntities();
+        private masterEntities1 db = new masterEntities1();
 
         // GET: AccountHolders
         public ActionResult Index()
@@ -21,20 +21,12 @@ namespace BankingWebsite.Controllers
             return View(db.AccountHolders.ToList());
         }
 
-        //GET: AccountHolder/AccountHome
+        //GET: AccountHolders1/AccountHome
 
         public ActionResult AccountHome(int? id)
         {
             return View(db.Cards.Where(a => a.accountholder.ToString() == id.ToString()).ToList());
         }
-
-        ////POST: AccountHolder/AccountHome
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult AccountHome(Session[)
-        //{
-        //    return View();
-        //}
 
         public ActionResult Logout()
         {
@@ -43,13 +35,13 @@ namespace BankingWebsite.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // GET: AccountHolders/Login
+        // GET: AccountHolders1/Login
         public ActionResult Login()
         {
             return View();
         }
 
-        // POST: AccountHolders/Login
+        // POST: AccountHolders1/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login([Bind(Include = "accountHolderID, firstname, lastname, password, passwordsalt, passwordhash, pin, pinsalt, pinhash, DOB, customerRef, email, mobile, firstLineaddr, cityOrTown, postcode")] AccountHolder accountHolder)
@@ -91,7 +83,7 @@ namespace BankingWebsite.Controllers
             }
         }
 
-        // GET: AccountHolders/Details/5
+        // GET: AccountHolders1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -106,7 +98,7 @@ namespace BankingWebsite.Controllers
             return View(accountHolder);
         }
 
-        // GET: AccountHolders/Create
+        // GET: AccountHolders1/Create
         public ActionResult Create()
         {
             //Generate random pin and show pin so they can send pin to user
@@ -115,7 +107,7 @@ namespace BankingWebsite.Controllers
             return View();
         }
 
-        // POST: AccountHolders/Create
+        // POST: AccountHolders1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -144,7 +136,7 @@ namespace BankingWebsite.Controllers
             return View(accountHolder);
         }
 
-        // GET: AccountHolders/Edit/5
+        // GET: AccountHolders1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -161,7 +153,7 @@ namespace BankingWebsite.Controllers
             return View(accountHolder);
         }
 
-        // POST: AccountHolders/Edit/5
+        // POST: AccountHolders1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -188,7 +180,7 @@ namespace BankingWebsite.Controllers
             return View(accountHolder);
         }
 
-        // GET: AccountHolders/Delete/5
+        // GET: AccountHolders1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -203,7 +195,7 @@ namespace BankingWebsite.Controllers
             return View(accountHolder);
         }
 
-        // POST: AccountHolders/Delete/5
+        // POST: AccountHolders1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

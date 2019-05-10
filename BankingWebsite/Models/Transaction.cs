@@ -19,8 +19,10 @@ namespace BankingWebsite.Models
         public Nullable<decimal> moneyIn { get; set; }
         public Nullable<decimal> moneyOut { get; set; }
         public Nullable<decimal> balance { get; set; }
-        public Nullable<int> transcard { get; set; }
+        public Nullable<int> fromAccount { get; set; }
+        public Nullable<int> toAccount { get; set; }
     
         public virtual Card Card { get; set; }
+        public virtual Card Card1 { get; set; }
     }
 }

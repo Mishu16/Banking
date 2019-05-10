@@ -128,40 +128,40 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AccountHoldersController.cs" />
+    <Compile Include="Controllers\AccountHolders1Controller.cs" />
     <Compile Include="Controllers\CardsController.cs" />
-    <Compile Include="Controllers\DeletedAHsController.cs" />
+    <Compile Include="Controllers\DeletedAHs1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountHolder.cs">
-      <DependentUpon>BankingWebsite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BankingWebsite.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BankingWebsite.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BankingWebsite.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BankingWebsite.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BankingWebsite.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BankingWebsite.edmx</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Card.cs">
-      <DependentUpon>BankingWebsite.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DeletedAH.cs">
-      <DependentUpon>BankingWebsite.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Transaction.cs">
-      <DependentUpon>BankingWebsite.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\HashSalt.cs" />
@@ -181,25 +181,25 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\6d7481ba-53bc-410c-9727-dd648f3e96a3.png" />
-    <Content Include="Models\BankingWebsite.Context.tt">
+    <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BankingWebsite.edmx</DependentUpon>
-      <LastGenOutput>BankingWebsite.Context.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\BankingWebsite.tt">
+    <Content Include="Models\Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BankingWebsite.edmx</DependentUpon>
-      <LastGenOutput>BankingWebsite.cs</LastGenOutput>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Images\592751b8-bafa-4516-b124-d3ca2d6080ba.png" />
-    <EntityDeploy Include="Models\BankingWebsite.edmx">
+    <EntityDeploy Include="Models\Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BankingWebsite.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\BankingWebsite.edmx.diagram">
-      <DependentUpon>BankingWebsite.edmx</DependentUpon>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -226,28 +226,28 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\AccountHolders\Create.cshtml" />
-    <Content Include="Views\AccountHolders\Delete.cshtml" />
-    <Content Include="Views\AccountHolders\Details.cshtml" />
-    <Content Include="Views\AccountHolders\Edit.cshtml" />
-    <Content Include="Views\AccountHolders\Index.cshtml" />
     <Content Include="Views\Cards\Create.cshtml" />
     <Content Include="Views\Cards\Delete.cshtml" />
     <Content Include="Views\Cards\Details.cshtml" />
     <Content Include="Views\Cards\Edit.cshtml" />
     <Content Include="Views\Cards\Index.cshtml" />
+    <Content Include="Views\AccountHolders1\Create.cshtml" />
+    <Content Include="Views\AccountHolders1\Delete.cshtml" />
+    <Content Include="Views\AccountHolders1\Details.cshtml" />
+    <Content Include="Views\AccountHolders1\Edit.cshtml" />
+    <Content Include="Views\AccountHolders1\Index.cshtml" />
+    <Content Include="Views\DeletedAHs1\Create.cshtml" />
+    <Content Include="Views\DeletedAHs1\Delete.cshtml" />
+    <Content Include="Views\DeletedAHs1\Details.cshtml" />
+    <Content Include="Views\DeletedAHs1\Edit.cshtml" />
+    <Content Include="Views\DeletedAHs1\Index.cshtml" />
     <Content Include="Views\Transactions\Create.cshtml" />
     <Content Include="Views\Transactions\Delete.cshtml" />
     <Content Include="Views\Transactions\Details.cshtml" />
     <Content Include="Views\Transactions\Edit.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
-    <Content Include="Views\DeletedAHs\Create.cshtml" />
-    <Content Include="Views\DeletedAHs\Delete.cshtml" />
-    <Content Include="Views\DeletedAHs\Details.cshtml" />
-    <Content Include="Views\DeletedAHs\Edit.cshtml" />
-    <Content Include="Views\DeletedAHs\Index.cshtml" />
-    <Content Include="Views\AccountHolders\Login.cshtml" />
-    <Content Include="Views\AccountHolders\AccountHome.cshtml" />
+    <Content Include="Views\AccountHolders1\AccountHome.cshtml" />
+    <Content Include="Views\AccountHolders1\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

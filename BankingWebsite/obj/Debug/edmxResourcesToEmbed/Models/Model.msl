@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities">
+  <EntityContainerMapping StorageEntityContainer="masterModelStoreContainer" CdmEntityContainer="masterEntities1">
     <EntitySetMapping Name="AccountHolders">
       <EntityTypeMapping TypeName="masterModel.AccountHolder">
         <MappingFragment StoreEntitySet="AccountHolder">
@@ -23,14 +23,14 @@
     <EntitySetMapping Name="Cards">
       <EntityTypeMapping TypeName="masterModel.Card">
         <MappingFragment StoreEntitySet="Cards">
-          <ScalarProperty Name="sortcode" ColumnName="sortcode" />
-          <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
-          <ScalarProperty Name="accountName" ColumnName="accountName" />
           <ScalarProperty Name="cardID" ColumnName="cardID" />
           <ScalarProperty Name="cardNo" ColumnName="cardNo" />
           <ScalarProperty Name="cardPin" ColumnName="cardPin" />
           <ScalarProperty Name="balance" ColumnName="balance" />
           <ScalarProperty Name="accountholder" ColumnName="accountholder" />
+          <ScalarProperty Name="accountName" ColumnName="accountName" />
+          <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+          <ScalarProperty Name="sortcode" ColumnName="sortcode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -53,16 +53,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Transaction1">
-      <EntityTypeMapping TypeName="masterModel.Transaction1">
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="masterModel.Transaction">
         <MappingFragment StoreEntitySet="Transactions">
-          <ScalarProperty Name="toAccount" ColumnName="toAccount" />
-          <ScalarProperty Name="fromAccount" ColumnName="fromAccount" />
-          <ScalarProperty Name="balance" ColumnName="balance" />
-          <ScalarProperty Name="moneyOut" ColumnName="moneyOut" />
-          <ScalarProperty Name="moneyIn" ColumnName="moneyIn" />
-          <ScalarProperty Name="transDate" ColumnName="transDate" />
           <ScalarProperty Name="transID" ColumnName="transID" />
+          <ScalarProperty Name="transDate" ColumnName="transDate" />
+          <ScalarProperty Name="moneyIn" ColumnName="moneyIn" />
+          <ScalarProperty Name="moneyOut" ColumnName="moneyOut" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+          <ScalarProperty Name="fromAccount" ColumnName="fromAccount" />
+          <ScalarProperty Name="toAccount" ColumnName="toAccount" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

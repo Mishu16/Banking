@@ -12,12 +12,12 @@ namespace BankingWebsite.Controllers
 {
     public class TransactionsController : Controller
     {
-        private masterEntities db = new masterEntities();
+        private masterEntities1 db = new masterEntities1();
 
         // GET: Transactions
         public ActionResult Index()
         {
-            var transactions = db.Transactions.Include(t => t.Card);
+            var transactions = db.Transactions.Include(t => t.Card).Include(t => t.Card1);
             return View(transactions.ToList());
         }
 
@@ -39,7 +39,8 @@ namespace BankingWebsite.Controllers
         // GET: Transactions/Create
         public ActionResult Create()
         {
-            ViewBag.transcard = new SelectList(db.Cards, "cardID", "cardNo");
+            ViewBag.fromAccount = new SelectList(db.Cards, "cardID", "cardNo");
+            ViewBag.toAccount = new SelectList(db.Cards, "cardID", "cardNo");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace BankingWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "transID,transDate,moneyIn,moneyOut,balance,transcard")] Transaction transaction)
+        public ActionResult Create([Bind(Include = "transID,transDate,moneyIn,moneyOut,balance,fromAccount,toAccount")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +58,8 @@ namespace BankingWebsite.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.transcard = new SelectList(db.Cards, "cardID", "cardNo", transaction.transcard);
+            ViewBag.fromAccount = new SelectList(db.Cards, "cardID", "cardNo", transaction.fromAccount);
+            ViewBag.toAccount = new SelectList(db.Cards, "cardID", "cardNo", transaction.toAccount);
             return View(transaction);
         }
 
@@ -73,7 +75,8 @@ namespace BankingWebsite.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.transcard = new SelectList(db.Cards, "cardID", "cardNo", transaction.transcard);
+            ViewBag.fromAccount = new SelectList(db.Cards, "cardID", "cardNo", transaction.fromAccount);
+            ViewBag.toAccount = new SelectList(db.Cards, "cardID", "cardNo", transaction.toAccount);
             return View(transaction);
         }
 
@@ -82,7 +85,7 @@ namespace BankingWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "transID,transDate,moneyIn,moneyOut,balance,transcard")] Transaction transaction)
+        public ActionResult Edit([Bind(Include = "transID,transDate,moneyIn,moneyOut,balance,fromAccount,toAccount")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +93,8 @@ namespace BankingWebsite.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.transcard = new SelectList(db.Cards, "cardID", "cardNo", transaction.transcard);
+            ViewBag.fromAccount = new SelectList(db.Cards, "cardID", "cardNo", transaction.fromAccount);
+            ViewBag.toAccount = new SelectList(db.Cards, "cardID", "cardNo", transaction.toAccount);
             return View(transaction);
         }
 

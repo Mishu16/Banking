@@ -28,12 +28,12 @@
     <Property Name="cardPin" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="balance" Type="Decimal" Precision="12" Scale="2" Nullable="false" />
     <Property Name="accountholder" Type="Int32" />
-    <NavigationProperty Name="AccountHolder1" Relationship="Self.FK__Cards__accountho__278EDA44" FromRole="Cards" ToRole="AccountHolder" />
     <Property Name="accountName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="accountNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="sortcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Transactions" Relationship="masterModel.FK__Transacti__fromA__3AA1AEB8" FromRole="Card" ToRole="Transaction1" />
-    <NavigationProperty Name="Transactions1" Relationship="masterModel.FK__Transacti__toAcc__39AD8A7F" FromRole="Card" ToRole="Transaction1" />
+    <NavigationProperty Name="AccountHolder1" Relationship="Self.FK__Cards__accountho__278EDA44" FromRole="Cards" ToRole="AccountHolder" />
+    <NavigationProperty Name="Transactions" Relationship="Self.FK__Transacti__fromA__3AA1AEB8" FromRole="Cards" ToRole="Transactions" />
+    <NavigationProperty Name="Transactions1" Relationship="Self.FK__Transacti__toAcc__39AD8A7F" FromRole="Cards" ToRole="Transactions" />
   </EntityType>
   <EntityType Name="DeletedAH">
     <Key>
@@ -53,6 +53,20 @@
     <Property Name="cityOrTown" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
   </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="transID" />
+    </Key>
+    <Property Name="transID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transDate" Type="DateTime" Precision="3" />
+    <Property Name="moneyIn" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="moneyOut" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="balance" Type="Decimal" Precision="12" Scale="2" />
+    <Property Name="fromAccount" Type="Int32" />
+    <Property Name="toAccount" Type="Int32" />
+    <NavigationProperty Name="Card" Relationship="Self.FK__Transacti__fromA__3AA1AEB8" FromRole="Transactions" ToRole="Cards" />
+    <NavigationProperty Name="Card1" Relationship="Self.FK__Transacti__toAcc__39AD8A7F" FromRole="Transactions" ToRole="Cards" />
+  </EntityType>
   <Association Name="FK__Cards__accountho__278EDA44">
     <End Role="AccountHolder" Type="Self.AccountHolder" Multiplicity="0..1" />
     <End Role="Cards" Type="Self.Card" Multiplicity="*" />
@@ -65,60 +79,46 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="masterEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="AccountHolders" EntityType="Self.AccountHolder" />
-    <EntitySet Name="Cards" EntityType="Self.Card" />
-    <EntitySet Name="DeletedAHs" EntityType="Self.DeletedAH" />
-    <AssociationSet Name="FK__Cards__accountho__278EDA44" Association="Self.FK__Cards__accountho__278EDA44">
-      <End Role="AccountHolder" EntitySet="AccountHolders" />
-      <End Role="Cards" EntitySet="Cards" />
-    </AssociationSet>
-    <EntitySet Name="Transaction1" EntityType="masterModel.Transaction1" />
-    <AssociationSet Name="FK__Transacti__fromA__3AA1AEB8" Association="masterModel.FK__Transacti__fromA__3AA1AEB8">
-      <End Role="Card" EntitySet="Cards" />
-      <End Role="Transaction1" EntitySet="Transaction1" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Transacti__toAcc__39AD8A7F" Association="masterModel.FK__Transacti__toAcc__39AD8A7F">
-      <End Role="Card" EntitySet="Cards" />
-      <End Role="Transaction1" EntitySet="Transaction1" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Transaction1">
-    <Key>
-      <PropertyRef Name="transID" />
-    </Key>
-    <Property Name="transID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="transDate" Type="DateTime" Precision="3" />
-    <Property Name="moneyIn" Type="Decimal" Precision="12" Scale="2" />
-    <Property Name="moneyOut" Type="Decimal" Precision="12" Scale="2" />
-    <Property Name="balance" Type="Decimal" Precision="12" Scale="2" />
-    <Property Name="fromAccount" Type="Int32" />
-    <Property Name="toAccount" Type="Int32" />
-    <NavigationProperty Name="Card" Relationship="masterModel.FK__Transacti__fromA__3AA1AEB8" FromRole="Transaction1" ToRole="Card" />
-    <NavigationProperty Name="Card1" Relationship="masterModel.FK__Transacti__toAcc__39AD8A7F" FromRole="Transaction1" ToRole="Card" />
-  </EntityType>
   <Association Name="FK__Transacti__fromA__3AA1AEB8">
-    <End Type="masterModel.Card" Role="Card" Multiplicity="0..1" />
-    <End Type="masterModel.Transaction1" Role="Transaction1" Multiplicity="*" />
+    <End Role="Cards" Type="Self.Card" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Card">
+      <Principal Role="Cards">
         <PropertyRef Name="cardID" />
       </Principal>
-      <Dependent Role="Transaction1">
+      <Dependent Role="Transactions">
         <PropertyRef Name="fromAccount" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__Transacti__toAcc__39AD8A7F">
-    <End Type="masterModel.Card" Role="Card" Multiplicity="0..1" />
-    <End Type="masterModel.Transaction1" Role="Transaction1" Multiplicity="*" />
+    <End Role="Cards" Type="Self.Card" Multiplicity="0..1" />
+    <End Role="Transactions" Type="Self.Transaction" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Card">
+      <Principal Role="Cards">
         <PropertyRef Name="cardID" />
       </Principal>
-      <Dependent Role="Transaction1">
+      <Dependent Role="Transactions">
         <PropertyRef Name="toAccount" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityContainer Name="masterEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AccountHolders" EntityType="Self.AccountHolder" />
+    <EntitySet Name="Cards" EntityType="Self.Card" />
+    <EntitySet Name="DeletedAHs" EntityType="Self.DeletedAH" />
+    <EntitySet Name="Transactions" EntityType="Self.Transaction" />
+    <AssociationSet Name="FK__Cards__accountho__278EDA44" Association="Self.FK__Cards__accountho__278EDA44">
+      <End Role="AccountHolder" EntitySet="AccountHolders" />
+      <End Role="Cards" EntitySet="Cards" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__fromA__3AA1AEB8" Association="Self.FK__Transacti__fromA__3AA1AEB8">
+      <End Role="Cards" EntitySet="Cards" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__toAcc__39AD8A7F" Association="Self.FK__Transacti__toAcc__39AD8A7F">
+      <End Role="Cards" EntitySet="Cards" />
+      <End Role="Transactions" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

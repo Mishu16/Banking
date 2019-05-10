@@ -12,7 +12,7 @@ namespace BankingWebsite.Controllers
 {
     public class CardsController : Controller
     {
-        private masterEntities db = new masterEntities();
+        private masterEntities1 db = new masterEntities1();
 
         // GET: Cards
         public ActionResult Index()
@@ -82,7 +82,7 @@ namespace BankingWebsite.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "cardID,cardNo,cardPin,balance,accountholder,accountName, accountNumber, sortcode")] Card card)
+        public ActionResult Edit([Bind(Include = "cardID,cardNo,cardPin,balance,accountholder,accountName,accountNumber,sortcode")] Card card)
         {
             if (ModelState.IsValid)
             {
