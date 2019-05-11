@@ -1,0 +1,99 @@
+﻿@model IEnumerable<BankingWebsite.Models.Transaction>
+
+@{
+    ViewBag.Title = "View";
+}
+
+    <div class="row">
+        <div class="col-lg-2">
+            <div id="wrapper">
+
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-brand">
+                            <a href=@Url.Action("AccountHome/"+ Session["ahID"],"AccountHolders1")>
+                                Overview
+                            </a>
+                        </li>
+                        <li>
+                            <a href=@Url.Action("PreTransactionHistory/" + Session["ahID"] ,"Transactions")>Statements</a>
+                        </li>
+                        <li>
+                            <a href=@Url.Action("Create","Transactions")>Transfer money</a>
+                        </li>
+                        <li>
+                            <a href="#">Make payment</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+            <!-- /#wrapper -->
+            <!-- Menu Toggle Script -->
+            <script>
+                $("#menu-toggle").click(function (e) {
+                    e.preventDefault();
+                    $("#wrapper").toggleClass("toggled");
+                });</script>
+        </div>
+        <div class="col-lg-8">
+            <h2>View</h2>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.transDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.moneyOut)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.balance)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.toBalance)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Card.cardNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Card1.cardNo)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.transDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.moneyOut)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.balance)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.toBalance)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Card.cardNo)
+                </td>
+                <td>
+                        @Html.DisplayFor(modelItem => item.Card1.cardNo)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.transID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.transID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.transID })
+                </td>
+            </tr>
+                }
+
+
+            </table>
+        </div>
+    </div>
+

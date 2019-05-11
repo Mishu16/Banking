@@ -21,6 +21,19 @@ namespace BankingWebsite.Controllers
             return View(transactions.ToList());
         }
 
+        // GET: TransactionHistory
+        public ActionResult PreTransactionHistory(int? id)
+        {
+            return View(db.Cards.Where(a => a.accountholder.ToString() == id.ToString()).ToList());
+        }
+
+        // GET: TransactionHistory
+        public ActionResult TransactionHistory(int? id)
+        {
+            ViewBag.cardID = id.ToString();
+            return View(db.Transactions.Where(w => w.toAccount == id || w.fromAccount == id).Include(t => t.Card).Include(t => t.Card1).ToList());
+        }
+
         // GET: Transactions/Details/5
         public ActionResult Details(int? id)
         {
@@ -66,7 +79,7 @@ namespace BankingWebsite.Controllers
                 transaction.transDate = DateTime.Now.Date;
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AccountHome/" + Session["ahID"], "AccountHolders1");
             }
 
             ViewBag.fromAccount = new SelectList(db.Cards, "cardID", "cardNo", transaction.fromAccount);
